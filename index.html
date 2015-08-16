@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base href="https://sdr2050.github.io/youtube_annotation/" target="_blank">
+  <title>Copy YouTube Annotations</title>
+
+  <meta charset="utf-8">
+  <meta name="author" content="Sudheer Singh">
+  <meta name="description" content="Copy YouTube Annotations">
+  <meta name="viewport" content="70%, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="../css/main.css">
+    <link rel="license" href="https://www.gnu.org/licenses/gpl-3.0.html" title="GNU GPL v3 or later">
+  <script src="https://sdr2050.github.io/js/https.js"></script>
+  <script src="https://sdr2050.github.io/youtube_annotation/annota.js"></script>
+
+<style type="text/css">
+#ampersand_warning {
+  visibility: hidden;
+  font-size: large;
+  color: red;
+  font-weight: bold;
+}
+</style>
+
+</head>
+<body>
+  <header>
+    <img src="img/icon128.png" width="150" height="133" alt="Icon" itemprop="image">
+    <hgroup>
+      <h1 itemprop="name">Copy YouTube Annotations</h1>
+         </hgroup>
+  </header>
+    <h2 id="step1">Get annotation data</h2>
+
+    <div class="input-group col-sm-9">
+      <input class="form-control" type="text" id="video_id" placeholder="Paste video id or url here, then click -->" onkeydown="gethelp(event);" monospace>
+      <span class="input-group-btn">
+        <button class="btn btn-primary" onclick="get();">Get annotations</button>
+      </span>
+    </div>
+
+    <h2 id="step2">Paste the XML</h2>
+
+    <p>Put the XML into this box.</p>
+
+    <textarea class="form-control" id="data" rows="10" placeholder="Paste le big XML data here...  &gt;&lt;(((('&gt;" onkeyup="checkxml();" monospace></textarea><br/>
+
+    <p><strong>Note:</strong> If you have ampersands (<strong>&amp;</strong>) in a text or if you use urls, make sure the ampersands are escaped! This means all <strong>&amp;</strong> should be escaped like <strong>&amp;amp;</strong>. If you copy using <em>view page source</em>, then this should happen automatically!</p>
+
+    <p id="ampersand_warning">Warning: Your XML code contains unescaped ampersands!</p>
+
+    <h2 id="step4">Get an auth_token</h2>
+  
+    <p>Once you have the userscript, a text field will appear in the lower right of the YouTube annotations editor with an auth_token.</p>
+
+    <p>Put the auth_token in this text field:</p>
+
+    <p><input class="form-control" type="text" id="auth_token" placeholder="Paste your auth_token here" monospace></p>
+
+
+    <h2 id="step5"> If You Want Delete Annaotation <small>(Optional)</small></h2>
+      <p><button class="btn btn-danger" onclick="clearvideo();">Delete annotations</button></p>
+
+    <h2 id="step6">Destination videos</h2>
+
+    <p>Put a list of destination video ids or urls in this box.</p>
+    <p><textarea class="form-control" id="ids" rows="5" placeholder="List of video ids or urls. Separate with newlines." monospace></textarea></p>
+    <p>When you click the button below, the annotations will be copied. They are not published automatically.</p>
+    <p class="buttons">
+      <button class="btn btn-primary" onclick="update();">Copy annotations</button>
+      <button class="btn btn-default" onclick="publish();">Publish annotations</button>
+    </p>
+       <h2>Log</h2>
+
+    <p>The actions you perform above will be printed here.</p>
+
+    <ul id="log"></ul>
+    
+  </div>
+  <script src="../js/ga.js"></script>
+  <script src="../js/fubar.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>
